@@ -1,8 +1,11 @@
-body {
-    margin: 0;
-    background-color: darkslateblue;
-}
+/* 
+Used to customize tg elements
 
-h1 {
-    color: coral;
-}
+var(--tg-theme-bg-color)
+var(--tg-theme-text-color)
+var(--tg-theme-hint-color)
+var(--tg-theme-link-color)
+var(--tg-theme-button-color)
+var(--tg-theme-button-text-color)
+
+*/
