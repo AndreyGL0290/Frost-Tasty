@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    
     <title>Telegram pop-up</title>
 </head>
 <body>
-    <div class="container">
-        <div class="inner">
-            <span id="demo"></span>
-            <!-- Here React or bare JS will create product structure from .json file -->
-        </div>
-    </div>
+    <div class="container" id="root">
+    </div>    
     <script type="text/javascript" src="build_menu.js"></script>
 </body>
 </html>

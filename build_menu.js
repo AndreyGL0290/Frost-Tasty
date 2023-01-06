@@ -2,6 +2,7 @@ const menu = {
     Category1:
     {   
         name: 'Пельмени',
+        imagePath: "./images/Пельмени.png",
         Content1:
         {
             name: "Пельмени Свинина & Говядина",
@@ -27,6 +28,7 @@ const menu = {
     Category2:
     {
         name: "Вареники",
+        imagePath: "./images/Вареники.png",
         Content1:
         {
             name: "Вареники Картофель",
@@ -66,6 +68,7 @@ const menu = {
     Category3:
     {
         name: "Котлеты & Фрикадельки",
+        imagePath: "./images/Котлеты, фрикадельки.jpg",
         Content1:
         {
             name: "Котлеты Куриные",
@@ -105,6 +108,7 @@ const menu = {
     Category4:
     {
         name: "Блины & Сырники",
+        imagePath: "./images/Блины фаршированные.jpg",
         Content1:
         {
             name: "Блины фаршированные мясом",
@@ -130,6 +134,7 @@ const menu = {
     Category5:
     {
         name: "Салаты & Закузки",
+        imagePath: "./images/Салаты и закуски.jpg",
         Content1:
         {
             name: "Салат 'Оливье'",
@@ -191,6 +196,7 @@ const menu = {
     Category6:
     {
         name: "Пробные сеты",
+        imagePath: "./images/пробный сет_1.png",
         Content1:
         {
             name: "Пробный сет №1",
@@ -209,8 +215,33 @@ const menu = {
     }
 }
 
-console.log(menu)
+function createCard(props){
+    let cardContainer = document.createElement('div')
+    cardContainer.className = 'card'
 
+    let label = document.createElement('span')
+    label.className = 'card-label'
+    label.textContent = props.name
 
-let demo = document.getElementById('demo')
-demo.textContent = menu
+    let image = document.createElement('img')
+    image.className = 'card-image'
+    image.src = props.imagePath
+
+    let button = document.createElement('button')
+    button.className = 'card-button'
+    button.textContent = 'Перейти'
+
+    cardContainer.appendChild(label)
+    cardContainer.appendChild(image)
+    cardContainer.appendChild(button)
+
+    return cardContainer
+}
+
+// This part renders cards with prouduct groups 
+const root = document.getElementById('root');
+
+for (let i = 0; i < Object.keys(menu).length; i+=1){
+    let element = createCard(menu[Object.keys(menu)[i]]) 
+    root.appendChild(element)
+}

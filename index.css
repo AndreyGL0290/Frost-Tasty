@@ -1,3 +1,36 @@
+body {
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    float: left;
+    width:  150px;
+    height: 150px;
+    background-size: cover;
+  }
+
+.container {
+    display: grid;
+    grid-template-columns: auto auto;
+    max-width: 360px;
+    gap: 100px 30px;
+}
+
+.card{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 180px;
+    max-height: 180px;
+}
+
+.card-label{
+    text-align: center;
+    margin-bottom: 3%;
+}
+
 /* 
 Used to customize tg elements
 
