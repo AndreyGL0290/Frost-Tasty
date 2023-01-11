@@ -10,26 +10,30 @@ img {
     max-width: 100%;
     height: auto;
     float: left;
-    border-radius: 20%;
+    border-radius: 50%;
     width: 150px;
     height: 143px;
     object-fit: cover;
 }
 
-.container {
-    display: grid;
+.outer-container {
+    display: flex;
     justify-content: center;
+    width: inherit;
+    height: inherit;
+}
+
+.inner-container {
+    display: grid;
     grid-template-columns: auto auto;
     max-width: 360px;
-    gap: 100px 30px;
+    gap: 100px 60px;
 }
 
 .card{
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 180px;
-    max-height: 180px;
 }
 
 .card-label{
@@ -41,18 +45,15 @@ img {
 }
 
 .card-image:active{
-    transform: scale(1.2);
+    transform: scale(1.5);
 }
 
 .card-button{
     color: var(--tg-theme-button-text-color);
     background-color: var(--tg-theme-button-color);
     border-width: 1px;
+    margin-top: 10px;
 }
-
-/* .card-button:hover{
-    color: white;
-} */
 
 /* 
 Used to customize tg elements
