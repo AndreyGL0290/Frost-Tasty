@@ -10,10 +10,10 @@ img {
     max-width: 100%;
     height: auto;
     float: left;
-    border-radius: 50%;
-    width:  150px;
-    height: 150px;
-    background-size:cover;
+    border-radius: 20%;
+    width: 150px;
+    height: 143px;
+    object-fit: cover;
 }
 
 .container {
@@ -36,23 +36,23 @@ img {
 }
 
 .card-image{
-    transition: 300ms;
+    transition: 100ms;
 }
 
-.card-image:hover{
+.card-image:active{
     transform: scale(1.2);
 }
 
 .card-button{
-    background-color: lightblue;
-    margin-top: 0px;
+    color: var(--tg-theme-button-text-color);
+    background-color: var(--tg-theme-button-color);
     border-width: 1px;
-    transition: 300ms;
 }
-.card-button:hover{
+
+/* .card-button:hover{
     color: white;
-    background-color: darkblue;
-}
+} */
+
 /* 
 Used to customize tg elements
 
