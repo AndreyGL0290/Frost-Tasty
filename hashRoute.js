@@ -1,9 +1,12 @@
 import {createGroupCards, createProductCards} from './build_menu.js'
 import {menu} from './menu.js'
 
+const pageTitle = "Frost&Tasty";
+
 // Create an object that maps the url to the template, title, and description
 export let routes = {
 	"/": {
+		title: "Groupes | " + pageTitle,
 		description: "Here you can choose the product group",
         constructor:
         {
@@ -12,6 +15,7 @@ export let routes = {
         }
 	},
 	product: {
+		title: "Products | " + pageTitle,
 		description: "Here you can choose the products themselves",
         constructor:
         {
@@ -28,7 +32,6 @@ const locationHandler = async () => {
 	}
 	const route = routes[location];
 	document.title = route.title;
-	console.log(route)
 	document
 		.querySelector('meta[name="description"]')
 		.setAttribute("content", route.description);
