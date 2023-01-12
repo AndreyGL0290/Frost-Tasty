@@ -26,6 +26,7 @@ export let routes = {
 };
 
 const locationHandler = async () => {
+	console.log(routes)
 	var location = window.location.hash.replace("#", "");
 	if (location.length == 0) {
 		location = "/";
