@@ -31,6 +31,7 @@ const locationHandler = async () => {
 	if (location.length == 0) {
 		location = "/";
 	}
+	console.log(location)
 	const route = routes[location];
 	document.title = route.title;
 	document
