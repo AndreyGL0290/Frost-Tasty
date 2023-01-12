@@ -1,32 +1,63 @@
-import {menu} from './menu.js'
+import {routes} from './hashRoute.js'
+const root = document.getElementById('root')
 
-function createCard(props){
-    let cardContainer = document.createElement('div')
-    cardContainer.className = 'card'
+export function createGroupCards(menu){
+    for (let i = 0; i < Object.keys(menu).length; i+=1){
+        let cardContainer = document.createElement('div')
+        cardContainer.className = 'card groups'
 
-    let label = document.createElement('span')
-    label.className = 'card-label'
-    label.textContent = props.name
+        let label = document.createElement('span')
+        label.className = 'card-label'
+        label.textContent = menu[Object.keys(menu)[i]].name
 
-    let image = document.createElement('img')
-    image.className = 'card-image'
-    image.src = props.imagePath
+        let image = document.createElement('img')
+        image.className = 'card-image'
+        image.src = menu[Object.keys(menu)[i]].imagePath
 
-    let button = document.createElement('button')
-    button.className = 'card-button'
-    button.textContent = 'Перейти'
+        let button = document.createElement('a')
 
-    cardContainer.appendChild(label)
-    cardContainer.appendChild(image)
-    cardContainer.appendChild(button)
+        button.addEventListener('click', () => {
+            routes.product.constructor.props = menu[Object.keys(menu)[i]]
+        })
 
-    return cardContainer
+        button.href = '#product'
+        button.className = 'card-button'
+        button.textContent = 'Перейти'
+
+        cardContainer.appendChild(label)
+        cardContainer.appendChild(image)
+        cardContainer.appendChild(button)
+        root.appendChild(cardContainer)
+    }
+
 }
 
-// This part renders cards with prouduct groups 
-const root = document.getElementById('root');
+export function createProductCards(products){
+    for (let i = 2; i < Object.keys(products).length; i+=1){
+        let cardContainer = document.createElement('div')
+        cardContainer.className = 'card products'
 
-for (let i = 0; i < Object.keys(menu).length; i+=1){
-    let element = createCard(menu[Object.keys(menu)[i]]) 
-    root.appendChild(element)
+        let label = document.createElement('span')
+        label.className = 'card-label'
+        label.textContent = products[Object.keys(products)[i]].name
+
+        let image = document.createElement('img')
+        image.className = 'card-image'
+        image.src = products[Object.keys(products)[i]].imagePath
+
+        let button = document.createElement('a')
+
+        // button.addEventListener('click', () => {
+        //     routes.product.constructor.props = products[Object.keys(products)[i]]
+        // })
+
+        button.className = 'card-button'
+        button.textContent = 'Добавить'
+
+        cardContainer.appendChild(label)
+        cardContainer.appendChild(image)
+        cardContainer.appendChild(button)
+
+        root.appendChild(cardContainer)
+    }
 }
