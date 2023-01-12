@@ -27,7 +27,6 @@ const locationHandler = async () => {
 		location = "/";
 	}
 	const route = routes[location];
-	document.title = route.title;
 	console.log(route)
 	document
 		.querySelector('meta[name="description"]')
