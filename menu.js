@@ -6,6 +6,7 @@ export const menu = {
         Content1:
         {
             name: "Пельмени Свинина & Говядина",
+            imagePath: "./images/Пельмени.png",
             info: "Состав:\nСвинина,Говядина,Лук,Вода,Соль,Специи",
             price: 18
         },
@@ -13,6 +14,7 @@ export const menu = {
         Content2:
         {
             name: "Педьмени Говядина",
+            imagePath: "./images/Пельмени.png",
             info: "Состав:\nТесто пельменное,Говядина,Лук,Вода,Соль,Специи",
             price: 23
         },
@@ -20,6 +22,7 @@ export const menu = {
         Content3:
         {
             name: "Пельмени Курица",
+            imagePath: "./images/Пельмени.png",
             info: "Состав:\nМясо курицы,Лук,Вода,Соль,Специи",
             price: 18
         }
