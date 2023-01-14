@@ -17,7 +17,7 @@ export function createGroupCards(menu){
         let button = document.createElement('a')
 
         button.addEventListener('click', () => {
-            routes['/products'].constructor.props = menu[Object.keys(menu)[i]]
+            routes['Frost-Tasty_html_pages/products'].constructor.props = menu[Object.keys(menu)[i]]
         })
 
         button.href = '/products'
