@@ -13,7 +13,7 @@ document.addEventListener("click", (e) => {
 });
 
 export let routes = {
-	'Frost-Tasty_html_pages/': {
+	'/Frost-Tasty_html_pages/': {
 		title: "Groupes | " + pageTitle,
 		description: "This is the home page",
         constructor: {
@@ -21,7 +21,7 @@ export let routes = {
             props: menu
         }
 	},
-	"Frost-Tasty_html_pages/products": {
+	"/Frost-Tasty_html_pages/products": {
 		title: "Products | " + pageTitle,
 		description: "This is the about page",
         constructor: {
