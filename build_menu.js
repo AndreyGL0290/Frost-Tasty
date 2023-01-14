@@ -20,7 +20,7 @@ export function createGroupCards(menu){
             routes['/Frost-Tasty_html_pages/products'].constructor.props = menu[Object.keys(menu)[i]]
         })
 
-        button.href = '/products'
+        button.href = '/Frost-Tasty_html_pages/products'
         button.className = 'card-button'
         button.textContent = 'Перейти'
 
