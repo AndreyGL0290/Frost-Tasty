@@ -1,4 +1,4 @@
-import {routes} from './hashRoute.js'
+import {routes} from './urlRoute.js'
 const root = document.getElementById('root')
 
 export function createGroupCards(menu){
@@ -17,10 +17,10 @@ export function createGroupCards(menu){
         let button = document.createElement('a')
 
         button.addEventListener('click', () => {
-            routes.product.constructor.props = menu[Object.keys(menu)[i]]
+            routes['/products'].constructor.props = menu[Object.keys(menu)[i]]
         })
 
-        button.href = '#product'
+        button.href = '/products'
         button.className = 'card-button'
         button.textContent = 'Перейти'
 

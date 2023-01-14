@@ -26,12 +26,10 @@ export let routes = {
 };
 
 const locationHandler = async () => {
-	console.log(routes)
 	var location = window.location.hash.replace("#", "");
 	if (location.length == 0) {
 		location = "/";
 	}
-	console.log(location)
 	const route = routes[location];
 	document.title = route.title;
 	document
