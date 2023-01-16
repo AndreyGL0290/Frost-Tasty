@@ -17,7 +17,7 @@ document.addEventListener("click", (e) => {
 });
 // Add prefix /Frost-Tasty_html_pages in production
 export let routes = {
-	'/': {
+	'/Frost-Tasty_html_pages/': {
 		title: "Groups | " + pageTitle,
 		description: "This is the home page",
         constructor: {
@@ -25,7 +25,7 @@ export let routes = {
             props: menu
         }
 	},
-	"/products": {
+	"/Frost-Tasty_html_pages/products": {
 		title: "Products | " + pageTitle,
 		description: "This is the about page",
         constructor: {

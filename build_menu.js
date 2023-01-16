@@ -63,11 +63,11 @@ export function createGroupCards(menu){
 
         button.addEventListener('click', () => {
             // Add prefix /Frost-Tasty_html_pages in production
-            routes['/products'].constructor.props = menu[Object.keys(menu)[i]]
+            routes['/Frost-Tasty_html_pages/products'].constructor.props = menu[Object.keys(menu)[i]]
         })
 
         // Add prefix /Frost-Tasty_html_pages in production
-        button.href = '/products'
+        button.href = '/Frost-Tasty_html_pages/products'
         button.className = 'card-button groups'
         button.textContent = 'Перейти'
 
