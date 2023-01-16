@@ -5,23 +5,27 @@ const pageTitle = "Frost&Tasty";
 
 document.addEventListener("click", (e) => {
 	const { target } = e;
-	if (!target.className == 'card-button') {
+
+	// Only buttons which have classes discribed in buttons array will be handeled
+	let buttons = ['groups']
+	if (!buttons.includes(target.className.split(' ')[target.className.split(' ').length-1])) {
 		return;
 	}
+	console.log(target.className)
 	e.preventDefault();
 	urlRoute();
 });
-
+// Add prefix /Frost-Tasty_html_pages in production
 export let routes = {
-	'/Frost-Tasty_html_pages/': {
-		title: "Groupes | " + pageTitle,
+	'/': {
+		title: "Groups | " + pageTitle,
 		description: "This is the home page",
         constructor: {
             func: createGroupCards,
             props: menu
         }
 	},
-	"/Frost-Tasty_html_pages/products": {
+	"/products": {
 		title: "Products | " + pageTitle,
 		description: "This is the about page",
         constructor: {
@@ -43,8 +47,7 @@ const urlRoute = (event) => {
 // create a function that handles the  location
 const locationHandler = async () => {
 	const location = window.location.pathname;
-
-    console.log(location)
+    // console.log(location)
 	const route = routes[location];
 	document.title = route.title;
 	document
@@ -55,7 +58,6 @@ const locationHandler = async () => {
 };
 
 window.onpopstate = locationHandler;
-
-window.route = urlRoute;
+// window.route = urlRoute;
 
 locationHandler();
