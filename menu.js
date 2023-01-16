@@ -2,19 +2,19 @@ export const menu = {
     Category1:
     {   
         name: 'Пельмени',
-        imagePath: "./images/Пельмени.png",
+        imagePath: "./images/products/Пельмени.png",
         Content1:
         {
             name: "Пельмени Свинина & Говядина",
-            imagePath: "./images/Пельмени.png",
+            imagePath: "./images/products/Пельмени.png",
             info: "Состав:\nСвинина,Говядина,Лук,Вода,Соль,Специи",
             price: 18
         },
 
         Content2:
         {
-            name: "Педьмени Говядина",
-            imagePath: "./images/Пельмени.png",
+            name: "Пельмени Говядина",
+            imagePath: "./images/products/Пельмени.png",
             info: "Состав:\nТесто пельменное,Говядина,Лук,Вода,Соль,Специи",
             price: 23
         },
@@ -22,7 +22,7 @@ export const menu = {
         Content3:
         {
             name: "Пельмени Курица",
-            imagePath: "./images/Пельмени.png",
+            imagePath: "./images/products/Пельмени.png",
             info: "Состав:\nМясо курицы,Лук,Вода,Соль,Специи",
             price: 18
         }
@@ -31,7 +31,7 @@ export const menu = {
     Category2:
     {
         name: "Вареники",
-        imagePath: "./images/Вареники.png",
+        imagePath: "./images/products/Вареники.png",
         Content1:
         {
             name: "Вареники Картофель",
@@ -71,7 +71,7 @@ export const menu = {
     Category3:
     {
         name: "Котлеты",
-        imagePath: "./images/Котлеты, фрикадельки.jpg",
+        imagePath: "./images/products/Котлеты, фрикадельки.jpg",
         Content1:
         {
             name: "Котлеты Куриные",
@@ -111,7 +111,7 @@ export const menu = {
     Category4:
     {
         name: "Блины & Сырники",
-        imagePath: "./images/Блины фаршированные.jpg",
+        imagePath: "./images/products/Блины фаршированные.jpg",
         Content1:
         {
             name: "Блины фаршированные мясом",
@@ -137,7 +137,7 @@ export const menu = {
     Category5:
     {
         name: "Салаты & Закузки",
-        imagePath: "./images/Салаты и закуски.jpg",
+        imagePath: "./images/products/Салаты и закуски.jpg",
         Content1:
         {
             name: "Салат 'Оливье'",
@@ -199,7 +199,7 @@ export const menu = {
     Category6:
     {
         name: "Пробные сеты",
-        imagePath: "./images/пробный сет_1.png",
+        imagePath: "./images/products/пробный сет_1.png",
         Content1:
         {
             name: "Пробный сет №1",
