@@ -1,4 +1,4 @@
-import {basket} from './build_menu'
+import {basket} from './build_menu.js'
 export let tg = window.Telegram.WebApp
 
 tg.expand();
