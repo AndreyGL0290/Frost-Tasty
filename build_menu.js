@@ -104,7 +104,6 @@ export function createProductCards(products){
         // Creates click listener for add buttons
         button.addEventListener('click', () => {
             tg.MainButton.show()
-            tg.MainButton.setText(basket.products)
             button.style.display = "none"
 
             button.parentElement.children[button.parentElement.children.length - 1].style.display = "flex"
