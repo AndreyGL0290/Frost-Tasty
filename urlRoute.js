@@ -3,17 +3,6 @@ import {menu} from './menu.js'
 
 const pageTitle = "Frost&Tasty";
 
-document.addEventListener("click", (e) => {
-	const { target } = e;
-
-	// Only buttons which have classes discribed in buttons array will be handeled
-	let buttons = ['groups']
-	if (!buttons.includes(target.className.split(' ')[target.className.split(' ').length-1])) {
-		return;
-	}
-	e.preventDefault();
-	urlRoute();
-});
 // Add prefix /Frost-Tasty_html_pages in production
 export let routes = {
 	'/Frost-Tasty_html_pages/': {
@@ -35,7 +24,7 @@ export let routes = {
 };
 
 // create a function that watches the  and calls the locationHandler
-const urlRoute = (event) => {
+export const urlRoute = (event) => {
 	event = event || window.event; // get window.event if event argument not provided
 	event.preventDefault();
 	// window.history.pushState(state, unused, target link);
