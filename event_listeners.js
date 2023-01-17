@@ -23,7 +23,7 @@ document.addEventListener('click', (e) => {
         return
     }
 
-    if ((basket.products.length != 0) && (!tg.MainButton.isVisible)){
+    if (basket.products.length != 0){
         tg.MainButton.show()
         tg.MainButton.setText('Перейти в корзину')
     } else {
