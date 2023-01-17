@@ -46,7 +46,9 @@ class Basket{
 export const basket = new Basket()
 
 export function createGroupCards(menu){
-    document.getElementsByClassName('back-button')[0].style.display = "none"
+    let innerContainer = document.createElement('div')
+    innerContainer.className = 'inner-container'
+    
     for (let i = 0; i < Object.keys(menu).length; i+=1){
         let cardContainer = document.createElement('div')
         cardContainer.className = 'card groups'
@@ -74,12 +76,18 @@ export function createGroupCards(menu){
         cardContainer.appendChild(label)
         cardContainer.appendChild(image)
         cardContainer.appendChild(button)
-        root.appendChild(cardContainer)
+
+        innerContainer.appendChild(cardContainer)
     }
+
+    root.appendChild(innerContainer)
 }
 
 export function createProductCards(products){
-    document.getElementsByClassName('back-button')[0].style.display = "block"
+    root.appendChild(createBackButton())
+    
+    let innerContainer = document.createElement('div')
+    innerContainer.className = 'inner-container'
 
     // i starts with 2 because first 2 params in menu are name and image url
     for (let i = 2; i < Object.keys(products).length; i+=1){
@@ -102,11 +110,6 @@ export function createProductCards(products){
         
         // Creates click listener for add buttons
         button.addEventListener('click', () => {
-            if (!tg.MainButton.isVisible){
-                tg.MainButton.show()
-                tg.MainButton.setText("Перейти в корзину")
-            }
-
             button.style.display = "none"
 
             button.parentElement.children[button.parentElement.children.length - 1].style.display = "flex"
@@ -130,8 +133,19 @@ export function createProductCards(products){
         cardContainer.appendChild(button)
         cardContainer.appendChild(menuContainer)
 
-        root.appendChild(cardContainer)
+        innerContainer.appendChild(cardContainer)
     }
+
+    root.appendChild(innerContainer)
+}
+
+function createBackButton(){
+    let backButton = document.createElement('img')
+    backButton.src = "./images/system/back.png"
+    backButton.className = "back-button"
+    backButton.addEventListener('click', () => {history.back()})
+
+    return backButton
 }
 
 function createProductManagementMenu(product){
@@ -162,7 +176,6 @@ function createProductManagementMenu(product){
         basket.getProduct(product.name).quantity.increase()
         plus.parentElement.children[1].textContent = +plus.parentElement.children[1].textContent + 1
     })
-
 
     menuContainer.appendChild(minus)
     menuContainer.appendChild(quantity)
