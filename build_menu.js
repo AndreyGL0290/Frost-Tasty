@@ -46,7 +46,6 @@ class Basket{
 export const basket = new Basket()
 
 export function createGroupCards(menu){
-    console.log(basket.products)
     document.getElementsByClassName('back-button')[0].style.display = "none"
     for (let i = 0; i < Object.keys(menu).length; i+=1){
         let cardContainer = document.createElement('div')
@@ -103,7 +102,11 @@ export function createProductCards(products){
         
         // Creates click listener for add buttons
         button.addEventListener('click', () => {
-            tg.MainButton.show()
+            if (!tg.MainButton.isVisible){
+                tg.MainButton.show()
+                tg.MainButton.setText("Перейти в корзину")
+            }
+
             button.style.display = "none"
 
             button.parentElement.children[button.parentElement.children.length - 1].style.display = "flex"

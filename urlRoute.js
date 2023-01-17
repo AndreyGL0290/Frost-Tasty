@@ -11,7 +11,6 @@ document.addEventListener("click", (e) => {
 	if (!buttons.includes(target.className.split(' ')[target.className.split(' ').length-1])) {
 		return;
 	}
-	console.log(target.className)
 	e.preventDefault();
 	urlRoute();
 });
@@ -47,7 +46,6 @@ const urlRoute = (event) => {
 // create a function that handles the  location
 const locationHandler = async () => {
 	const location = window.location.pathname;
-    // console.log(location)
 	const route = routes[location];
 	document.title = route.title;
 	document
