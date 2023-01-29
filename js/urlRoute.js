@@ -28,15 +28,16 @@ export let routes = {
             func: createBasketMenu,
             props: null
         }
-	} // Doubt about that part
+	}
 };
 
-// create a function that watches the  and calls the locationHandler
 export const urlRoute = (event) => {
 	event = event || window.event; // get window.event if event argument not provided
 	event.preventDefault();
+	
 	// window.history.pushState(state, unused, target link);
 	window.history.pushState({}, "", event.target.href);
+
 	locationHandler();
 };
 
