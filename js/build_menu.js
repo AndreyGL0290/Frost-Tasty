@@ -1,5 +1,4 @@
 import {basket} from './basket.js'
-import {routes} from './urlRoute.js'
 import {tg} from './telegram.js'
 import { menu } from './menu.js'
 
@@ -24,13 +23,8 @@ export function createGroupCards(menu){
 
         let button = document.createElement('a')
 
-        button.addEventListener('click', () => {
-            // Add prefix /Frost-Tasty_html_pages in production
-            routes['/products'].constructor.props = {parent: Object.keys(menu)[i], content: menu[Object.keys(menu)[i]]}
-        })
-
         // Add prefix /Frost-Tasty_html_pages in production
-        button.href = '/products'
+        button.href = '/products#' + Object.keys(menu)[i]
         button.className = 'card-button groups'
         button.textContent = 'Перейти'
 
@@ -42,27 +36,32 @@ export function createGroupCards(menu){
     }
 
     root.appendChild(innerContainer)
+    if (Object.keys(basket.products).length != 0) root.appendChild(createBasketButton())
 }
 
-export function createProductCards(data){
+export function createProductCards(){
+    let categoryName = window.location.hash.replace('#', '') // Getting chosen category from hash
+    let products = menu[categoryName] // Getting products to render
+
     root.appendChild(createBackButton())
     
     let innerContainer = document.createElement('div')
     innerContainer.className = 'inner-container'
 
     // i starts with 2 because first 2 params in menu are name and image url
-    for (let i = 0; i < Object.keys(data.content).length; i+=1){
-        if (!(typeof data.content[Object.keys(data.content)[i]] == 'object')) continue
+    for (let i = 0; i < Object.keys(products).length; i+=1){
+        if (!(typeof products[Object.keys(products)[i]] == 'object')) continue
+
         let cardContainer = document.createElement('div')
         cardContainer.className = 'card'
 
         let label = document.createElement('span')
         label.className = 'card-label'
-        label.textContent = data.content[Object.keys(data.content)[i]].name
+        label.textContent = products[Object.keys(products)[i]].name
 
         let image = document.createElement('img')
         image.className = 'card-image'
-        image.src = data.content[Object.keys(data.content)[i]].imagePath
+        image.src = products[Object.keys(products)[i]].imagePath
 
         let button = document.createElement('a')
 
@@ -77,18 +76,18 @@ export function createProductCards(data){
             button.parentElement.children[button.parentElement.children.length - 1].style.display = "flex"
             button.parentElement.children[button.parentElement.children.length - 1].children[1].textContent = 1
             
-            basket.addProduct(data.content[Object.keys(data.content)[i]].name, data.parent, data.content[Object.keys(data.content)[i]])
+            basket.addProduct(products[Object.keys(products)[i]].name, categoryName, products[Object.keys(products)[i]])
         })
 
         // Creates `+ {quantity} -` set up for added products but does not show it immediately
-        let menuContainer = createProductManagementMenu(data.content[Object.keys(data.content)[i]])
+        let menuContainer = createProductManagementMenu(products[Object.keys(products)[i]])
         menuContainer.style.display = "none"
         // If user choosed something earlier in that group we render it 
-        if (basket.getProduct(data.content[Object.keys(data.content)[i]].name)){
-            if (basket.getProduct(data.content[Object.keys(data.content)[i]].name).name == data.content[Object.keys(data.content)[i]].name){
+        if (basket.getProduct(products[Object.keys(products)[i]].name)){
+            if (basket.getProduct(products[Object.keys(products)[i]].name).name == products[Object.keys(products)[i]].name){
                 button.style.display = "none"
                 menuContainer.style.display = "flex"
-                menuContainer.children[1].textContent = basket.getProduct(data.content[Object.keys(data.content)[i]].name).quantity.get()
+                menuContainer.children[1].textContent = basket.getProduct(products[Object.keys(products)[i]].name).quantity.get()
             }
         }
 
@@ -101,15 +100,24 @@ export function createProductCards(data){
     }
 
     root.appendChild(innerContainer)
+    if (Object.keys(basket.products).length != 0) root.appendChild(createBasketButton())
 }
 
 function createBackButton(){
-    let backButton = document.createElement('img')
-    backButton.src = "./images/system/back.png"
-    backButton.className = "back-button"
-    backButton.addEventListener('click', () => {history.back()})
+    let backButton = document.createElement('a')
+    backButton.className = 'back-button'
+    backButton.href = '/'
 
     return backButton
+}
+
+export function createBasketButton(){
+    let basketButton = document.createElement('a')
+    basketButton.className = 'basket-button'
+    basketButton.textContent = "Continue"
+    basketButton.href = "/basket"
+
+    return basketButton
 }
 
 function createProductManagementMenu(product){
@@ -128,7 +136,7 @@ function createProductManagementMenu(product){
             basket.deleteProduct(product.name)
             
             // For development {
-            if (Object.keys(basket.products).length == 0) {document.getElementsByTagName('footer')[0].remove()}
+            if (Object.keys(basket.products).length == 0) {document.getElementsByClassName('basket-button')[0].remove()}
             // }
 
             // For production
@@ -158,45 +166,70 @@ function createProductManagementMenu(product){
 
 export function createBasketMenu(products){
     for (let i = 0; i < Object.keys(products).length; i+=1){
+        // Card element (main)
         let cardContainer = document.createElement('div')
         cardContainer.className = 'in-basket-product'
-    
-        let deleteButton = document.createElement('img')
-        deleteButton.className = 'delete-button'
-        deleteButton.src = './images/system/cross.png'
-    
-        let showProductButton = document.createElement('img')
-        showProductButton.className = 'show-product-button'
-        showProductButton.src = './images/system/eye.png'
 
-        showProductButton.addEventListener('click', () => {
-            root.innerHTML = ''
-            createProductCards({parent: products[Object.keys(products)[i]].parent, content: menu[products[Object.keys(products)[i]].parent]})
+        // Cross button
+        let deleteButton = document.createElement('a')
+        deleteButton.className = 'delete-button'
+
+        // Deletes an element from basket and from user page when clicked
+        deleteButton.addEventListener('click', () => {
+            basket.deleteProduct(deleteButton.parentElement.children[2].textContent)
+
+            if (Object.keys(basket.products).length == 0){
+                let basketIsEmptyLabel = document.createElement('span')
+                basketIsEmptyLabel.innerHTML = 'Ваша корзина пуста<br>Посмтрите что-нибудь еще<br><br>'
+                let getMoreButton = document.createElement('a')
+                getMoreButton.className = 'get-more-button'
+                getMoreButton.innerHTML = 'Посмотреть<br><br>'
+                getMoreButton.href = '/'
+
+                if (document.getElementById('root')) {
+                    document.getElementById('root').insertBefore(basketIsEmptyLabel, deleteButton.parentElement.parentElement.lastChild)
+                    document.getElementById('root').insertBefore(getMoreButton, deleteButton.parentElement.parentElement.lastChild)
+                }
+            }
+
+            deleteButton.parentElement.remove()
         })
-    
+
+        // Eye button
+        let showProductButton = document.createElement('a')
+        showProductButton.className = 'show-product-button'
+        showProductButton.href = 'products#' + products[Object.keys(products)[i]].parent
+
+        // Product name label
         let productLabel = document.createElement('span')
         productLabel.className = 'product-label'
         productLabel.textContent = products[Object.keys(products)[i]].name
-        
+
+        // Product quantity label
         let productQuantity = document.createElement('span')
         productQuantity.className = 'product-quantity'
         productQuantity.textContent = products[Object.keys(products)[i]].quantity.get()
 
+        // Product price label
         let productPrice = document.createElement('span')
         productPrice.className = 'product-price'
         productPrice.textContent = products[Object.keys(products)[i]].price
-        
+
+        // Appends all daughter elemnts into main element
         cardContainer.appendChild(deleteButton)
         cardContainer.appendChild(showProductButton)
         cardContainer.appendChild(productLabel)
         cardContainer.appendChild(productQuantity)
         cardContainer.appendChild(productPrice)
 
+        // Appends main element into the page html
         root.appendChild(cardContainer)
     }
+
     // Development
-    if (document.getElementsByTagName('footer').length != 0){
-        document.getElementsByTagName('footer')[0].textContent = 'Confirm'
-    }
+    let confirmButton = document.createElement('a')
+    confirmButton.className = 'confirm-button'
+    confirmButton.textContent = 'Confirm'
+    if (document.getElementById('root')) document.getElementById('root').appendChild(confirmButton)
     //
 }
