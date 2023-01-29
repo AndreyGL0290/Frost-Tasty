@@ -54,6 +54,13 @@ body {
     text-decoration: none;
 }
 
+.back-button{
+    display: block;
+    width: 32px;
+    height: 32px;
+    background-image: url('../images/system/back.png');
+}
+
 /* 
 Used to customize tg elements
 

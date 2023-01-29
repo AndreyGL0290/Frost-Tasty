@@ -5,3 +5,17 @@
     align-items: center;
     border: 2px;
 }
+
+.show-product-button{
+    display: block;
+    width: 32px;
+    height: 32px;
+    background-image: url('../images/system/eye.png');
+}
+
+.delete-button{
+    display: block;
+    width: 32px;
+    height: 32px;
+    background-image: url('../images/system/cross.png');
+}
