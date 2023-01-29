@@ -1,0 +1,7 @@
+.in-basket-product{
+    display: flex;
+    max-width: 300px;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 2px;
+}
