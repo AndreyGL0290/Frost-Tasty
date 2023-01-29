@@ -1,15 +1,16 @@
 import {basket} from './basket.js'
-import {urlRoute} from './urlRoute.js'
+import {urlRoute, routes} from './urlRoute.js'
 import {tg} from './telegram.js'
-import { createBasketMenu } from './build_menu.js';
+import {createBasketButton} from './build_menu.js'
 
 // Used in urlRoute.js
 document.addEventListener("click", (e) => {
 	const { target } = e;
 
 	// Only buttons which have classes discribed in buttons array will be handeled
-	let buttons = ['groups']
-	if (!buttons.includes(target.className.split(' ')[target.className.split(' ').length-1])) {
+    // NOTICE: classes in buttons have to be elements last given class name
+	let buttons = ['groups', 'back-button', 'basket-button', 'show-product-button', 'get-more-button']
+	if (!buttons.includes(target.classList[target.classList.length-1])) {
 		return;
 	}
 	e.preventDefault();
@@ -27,15 +28,11 @@ document.addEventListener('click', (e) => {
     if (basket.products.length != 0){
 
         // For development {
-        if (!document.getElementsByTagName('footer')[0]){
-            let footer = document.createElement('footer')
-            footer.textContent = "Continue"
-            footer.addEventListener('click', () => {
-                const root = document.getElementById('root')
-                root.innerHTML = ''
-                createBasketMenu(basket.products)
-            })
-            document.getElementsByTagName('body')[0].appendChild(footer)
+        if (!document.getElementsByClassName('basket-button')[0]){
+            let basketButton = createBasketButton()
+            routes['/basket'].constructor.props = basket.products
+
+            document.getElementsByClassName('middle-container')[0].appendChild(basketButton)
         }
         // }
 
