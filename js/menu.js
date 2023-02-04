@@ -70,7 +70,7 @@ export const menu = {
 
     Category3:
     {
-        name: "Котлеты",
+        name: "Котлеты & Фрикадельки",
         imagePath: "./images/products/Котлеты, фрикадельки.jpg",
         Content1:
         {
