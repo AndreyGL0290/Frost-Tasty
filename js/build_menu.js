@@ -201,11 +201,12 @@ export function createBasketMenu(products){
                 // For production
                 tg.MainButton.hide()
                 //
-                
+
                 let getMoreButton = document.createElement('a')
                 getMoreButton.className = 'get-more-button'
                 getMoreButton.innerHTML = 'Посмотреть<br><br>'
-                getMoreButton.href = '/'
+                // Add prefix /Frost-Tasty_html_pages in production
+                getMoreButton.href = '/Frost-Tasty_html_pages/'
 
                 if (document.getElementById('root')) {
                     document.getElementById('root').appendChild(basketIsEmptyLabel)
