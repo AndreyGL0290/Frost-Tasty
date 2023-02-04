@@ -114,7 +114,8 @@ export function createProductCards(){
 function createBackButton(){
     let backButton = document.createElement('a')
     backButton.className = 'back-button'
-    backButton.href = '/'
+    // Add prefix /Frost-Tasty_html_pages in production
+    backButton.href = '/Frost-Tasty_html_pages/'
 
     return backButton
 }
