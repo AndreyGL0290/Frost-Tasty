@@ -29,7 +29,8 @@ document.addEventListener('click', (e) => {
         // For development {
         if (!document.getElementsByClassName('basket-button')[0]){
             let basketButton = createBasketButton()
-            routes['/basket'].constructor.props = basket.products
+            // Add prefix /Frost-Tasty_html_pages in production
+            routes['/Frost-Tasty_html_pages/basket'].constructor.props = basket.products
 
             document.getElementsByClassName('middle-container')[0].appendChild(basketButton)
         }
