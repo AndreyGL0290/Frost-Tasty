@@ -123,7 +123,8 @@ export function createBasketButton(){
     let basketButton = document.createElement('a')
     basketButton.className = 'basket-button'
     basketButton.textContent = "Continue"
-    basketButton.href = "/basket"
+    // Add prefix /Frost-Tasty_html_pages in production
+    basketButton.href = "/Frost-Tasty_html_pages/basket"
 
     return basketButton
 }
