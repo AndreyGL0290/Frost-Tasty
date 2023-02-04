@@ -2,6 +2,9 @@ import {basket} from './basket.js'
 import {tg} from './telegram.js'
 import { menu } from './menu.js'
 
+// TODO:
+// 1) Center basket content
+// 2) Get button to the page bottom
 
 const root = document.getElementById('root')
 
@@ -24,7 +27,7 @@ export function createGroupCards(menu){
         let button = document.createElement('a')
 
         // Add prefix /Frost-Tasty_html_pages in production
-        button.href = '/products#' + Object.keys(menu)[i]
+        button.href = '/Frost-Tasty_html_pages/products#' + Object.keys(menu)[i]
         button.className = 'card-button groups'
         button.textContent = 'Перейти'
 
@@ -42,8 +45,11 @@ export function createGroupCards(menu){
 export function createProductCards(){
     let categoryName = window.location.hash.replace('#', '') // Getting chosen category from hash
     let products = menu[categoryName] // Getting products to render
+    
+    let interfaceContainer = document.createElement('div')
+    interfaceContainer.className = 'interface-container'
 
-    root.appendChild(createBackButton())
+    interfaceContainer.appendChild(createBackButton())
     
     let innerContainer = document.createElement('div')
     innerContainer.className = 'inner-container'
@@ -99,7 +105,9 @@ export function createProductCards(){
         innerContainer.appendChild(cardContainer)
     }
 
-    root.appendChild(innerContainer)
+    interfaceContainer.appendChild(innerContainer)
+    root.appendChild(interfaceContainer)
+    
     if (Object.keys(basket.products).length != 0) root.appendChild(createBasketButton())
 }
 
@@ -135,13 +143,7 @@ function createProductManagementMenu(product){
             minus.parentElement.parentElement.children[minus.parentElement.parentElement.children.length-2].style.display = "flex"
             basket.deleteProduct(product.name)
             
-            // For development {
             if (Object.keys(basket.products).length == 0) {document.getElementsByClassName('basket-button')[0].remove()}
-            // }
-
-            // For production
-            if (Object.keys(basket.products).length == 0) tg.MainButton.hide()
-            //
         }
     })
     
@@ -165,35 +167,54 @@ function createProductManagementMenu(product){
 }
 
 export function createBasketMenu(products){
+    let basketContainer = document.createElement('div')
+    basketContainer.className = 'basket-container'
+
     for (let i = 0; i < Object.keys(products).length; i+=1){
         // Card element (main)
         let cardContainer = document.createElement('div')
         cardContainer.className = 'in-basket-product'
+        cardContainer.id = i
 
         // Cross button
         let deleteButton = document.createElement('a')
         deleteButton.className = 'delete-button'
+        deleteButton.data = i
 
         // Deletes an element from basket and from user page when clicked
         deleteButton.addEventListener('click', () => {
-            basket.deleteProduct(deleteButton.parentElement.children[2].textContent)
-
+            basket.deleteProduct(document.getElementById(deleteButton.data).children[0].children[1].textContent)
+            console.log(Object.keys(basket.products).length == 0)
             if (Object.keys(basket.products).length == 0){
+                document.getElementsByClassName('basket-container')[0].remove()
+
                 let basketIsEmptyLabel = document.createElement('span')
                 basketIsEmptyLabel.innerHTML = 'Ваша корзина пуста<br>Посмтрите что-нибудь еще<br><br>'
+                document.getElementsByClassName('confirm-button')[0].remove()
+
                 let getMoreButton = document.createElement('a')
                 getMoreButton.className = 'get-more-button'
                 getMoreButton.innerHTML = 'Посмотреть<br><br>'
                 getMoreButton.href = '/'
 
                 if (document.getElementById('root')) {
-                    document.getElementById('root').insertBefore(basketIsEmptyLabel, deleteButton.parentElement.parentElement.lastChild)
-                    document.getElementById('root').insertBefore(getMoreButton, deleteButton.parentElement.parentElement.lastChild)
+                    document.getElementById('root').appendChild(basketIsEmptyLabel)
+                    document.getElementById('root').appendChild(getMoreButton)
                 }
             }
 
-            deleteButton.parentElement.remove()
+            document.getElementById(deleteButton.data).remove()
         })
+
+        // Containers
+        let imagesContainer = document.createElement('div')
+        imagesContainer.className = 'images-container'
+
+        let additionalContentContainer = document.createElement('div')
+        additionalContentContainer.className = 'add-content-container'
+
+        let contentContainer = document.createElement('div')
+        contentContainer.className = 'content-container'
 
         // Eye button
         let showProductButton = document.createElement('a')
@@ -204,32 +225,50 @@ export function createBasketMenu(products){
         let productLabel = document.createElement('span')
         productLabel.className = 'product-label'
         productLabel.textContent = products[Object.keys(products)[i]].name
+        productLabel.data = i
 
         // Product quantity label
         let productQuantity = document.createElement('span')
         productQuantity.className = 'product-quantity'
-        productQuantity.textContent = products[Object.keys(products)[i]].quantity.get()
+
+        if (products[Object.keys(products)[i]].postfix) productQuantity.textContent = products[Object.keys(products)[i]].quantity.get() + 'шт'
+        else productQuantity.textContent = products[Object.keys(products)[i]].quantity.get() + 'кг'
 
         // Product price label
         let productPrice = document.createElement('span')
         productPrice.className = 'product-price'
         productPrice.textContent = products[Object.keys(products)[i]].price
 
+        // Combine simple elements on divs
+        imagesContainer.appendChild(deleteButton)
+        imagesContainer.appendChild(showProductButton)
+        
+        additionalContentContainer.appendChild(productQuantity)
+        additionalContentContainer.appendChild(productPrice)
+
+        contentContainer.appendChild(imagesContainer)
+        contentContainer.appendChild(productLabel)
+
         // Appends all daughter elemnts into main element
-        cardContainer.appendChild(deleteButton)
-        cardContainer.appendChild(showProductButton)
-        cardContainer.appendChild(productLabel)
-        cardContainer.appendChild(productQuantity)
-        cardContainer.appendChild(productPrice)
+        cardContainer.appendChild(contentContainer)
+        cardContainer.appendChild(additionalContentContainer)
+
 
         // Appends main element into the page html
-        root.appendChild(cardContainer)
+        basketContainer.appendChild(cardContainer)
+        basketContainer.appendChild(document.createElement('br'))
     }
 
+    if (document.getElementById('root')) document.getElementById('root').appendChild(basketContainer)
+
     // Development
-    let confirmButton = document.createElement('a')
-    confirmButton.className = 'confirm-button'
-    confirmButton.textContent = 'Confirm'
-    if (document.getElementById('root')) document.getElementById('root').appendChild(confirmButton)
+    // let confirmButton = document.createElement('a')
+    // confirmButton.className = 'confirm-button'
+    // confirmButton.textContent = 'Далее'
+    // if (document.getElementById('root')) document.getElementById('root').appendChild(confirmButton)
     //
+
+    // Prod
+    tg.MainButton.show()
+    tg.MainButton.setText('Далее')
 }
