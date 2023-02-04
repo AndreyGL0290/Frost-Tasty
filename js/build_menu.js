@@ -10,6 +10,8 @@ const root = document.getElementById('root')
 
 export function createGroupCards(menu){
     if (tg.MainButton.isVisible) tg.MainButton.hide()
+    if (tg.BackButton.isVisible) tg.BackButton.hide()
+
     let innerContainer = document.createElement('div')
     innerContainer.className = 'inner-container'
     
@@ -47,11 +49,8 @@ export function createProductCards(){
     if (tg.MainButton.isVisible) tg.MainButton.hide()
     let categoryName = window.location.hash.replace('#', '') // Getting chosen category from hash
     let products = menu[categoryName] // Getting products to render
-    
-    let interfaceContainer = document.createElement('div')
-    interfaceContainer.className = 'interface-container'
 
-    interfaceContainer.appendChild(createBackButton())
+    if (!tg.BackButton.isVisible) tg.BackButton.show()
     
     let innerContainer = document.createElement('div')
     innerContainer.className = 'inner-container'
@@ -107,19 +106,9 @@ export function createProductCards(){
         innerContainer.appendChild(cardContainer)
     }
 
-    interfaceContainer.appendChild(innerContainer)
-    root.appendChild(interfaceContainer)
+    root.appendChild(innerContainer)
     
     if (Object.keys(basket.products).length != 0) root.appendChild(createBasketButton())
-}
-
-function createBackButton(){
-    let backButton = document.createElement('a')
-    backButton.className = 'back-button'
-    // Add prefix /Frost-Tasty_html_pages in production
-    backButton.href = '/Frost-Tasty_html_pages/'
-
-    return backButton
 }
 
 export function createBasketButton(){
@@ -171,6 +160,8 @@ function createProductManagementMenu(product){
 }
 
 export function createBasketMenu(products){
+    if (!tg.BackButton.isVisible) tg.BackButton.show()
+
     let basketContainer = document.createElement('div')
     basketContainer.className = 'basket-container'
 
