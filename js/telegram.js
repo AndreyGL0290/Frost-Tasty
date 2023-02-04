@@ -4,4 +4,4 @@ export let tg = window.Telegram.WebApp
 
 tg.expand();
 
-Telegram.WebApp.onEvent("mainButtonClicked", JSON.stringify(basket.products));
+Telegram.WebApp.onEvent("mainButtonClicked", tg.sendData(JSON.stringify(basket.products)));
