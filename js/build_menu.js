@@ -9,6 +9,7 @@ import { menu } from './menu.js'
 const root = document.getElementById('root')
 
 export function createGroupCards(menu){
+    if (tg.MainButton.isVisible) tg.MainButton.hide()
     let innerContainer = document.createElement('div')
     innerContainer.className = 'inner-container'
     
@@ -43,6 +44,7 @@ export function createGroupCards(menu){
 }
 
 export function createProductCards(){
+    if (tg.MainButton.isVisible) tg.MainButton.hide()
     let categoryName = window.location.hash.replace('#', '') // Getting chosen category from hash
     let products = menu[categoryName] // Getting products to render
     
