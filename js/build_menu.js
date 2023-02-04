@@ -194,8 +194,14 @@ export function createBasketMenu(products){
 
                 let basketIsEmptyLabel = document.createElement('span')
                 basketIsEmptyLabel.innerHTML = 'Ваша корзина пуста<br>Посмтрите что-нибудь еще<br><br>'
-                document.getElementsByClassName('confirm-button')[0].remove()
+                // For development
+                if (document.getElementsByClassName('confirm-button')[0]) document.getElementsByClassName('confirm-button')[0].remove()
+                //
 
+                // For production
+                tg.MainButton.hide()
+                //
+                
                 let getMoreButton = document.createElement('a')
                 getMoreButton.className = 'get-more-button'
                 getMoreButton.innerHTML = 'Посмотреть<br><br>'
