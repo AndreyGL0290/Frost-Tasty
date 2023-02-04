@@ -21,6 +21,10 @@
     width: 30%;
 }
 
+.product-label{
+    width: 70%;
+}
+
 .content-container {
     display: flex;
     align-items: center;
