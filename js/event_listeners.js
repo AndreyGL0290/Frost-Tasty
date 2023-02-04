@@ -1,6 +1,5 @@
 import {basket} from './basket.js'
 import {urlRoute, routes} from './urlRoute.js'
-import {tg} from './telegram.js'
 import {createBasketButton} from './build_menu.js'
 
 // Used in urlRoute.js
@@ -35,8 +34,5 @@ document.addEventListener('click', (e) => {
             document.getElementsByClassName('middle-container')[0].appendChild(basketButton)
         }
         // }
-
-        tg.MainButton.show()
-        tg.MainButton.setText('Перейти в корзину')
     }
 })
