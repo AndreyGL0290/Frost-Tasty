@@ -5,7 +5,7 @@ const pageTitle = "Frost&Tasty";
 
 // Add prefix /Frost-Tasty_html_pages in production
 export let routes = {
-	'/Frost-Tasty_html_pages': {
+	'/Frost-Tasty_html_pages/': {
 		title: "Groups | " + pageTitle,
 		description: "This is the home page",
         constructor: {
@@ -44,6 +44,7 @@ export const urlRoute = (event) => {
 // create a function that handles the  location
 const locationHandler = async () => {
 	const location = window.location.pathname;
+	console.log(location)
 	const route = routes[location];
 	document.title = route.title;
 	document
