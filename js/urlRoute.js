@@ -5,7 +5,7 @@ const pageTitle = "Frost&Tasty";
 
 // Add prefix /Frost-Tasty_html_pages in production
 export let routes = {
-	'/': {
+	'/Frost-Tasty_html_pages': {
 		title: "Groups | " + pageTitle,
 		description: "This is the home page",
         constructor: {
@@ -13,7 +13,7 @@ export let routes = {
             props: menu
         }
 	},
-	"/products": {
+	"/Frost-Tasty_html_pages/products": {
 		title: "Products | " + pageTitle,
 		description: "This is the about page",
         constructor: {
@@ -21,7 +21,7 @@ export let routes = {
             props: null
         }
 	},
-	'/basket': {
+	'/Frost-Tasty_html_pages/basket': {
 		title: "Basket | " + pageTitle,
 		description: "Here you can check products you've chosen",
         constructor: {
@@ -50,6 +50,7 @@ const locationHandler = async () => {
 		.querySelector('meta[name="description"]')
 		.setAttribute("content", route.description);
     document.getElementById('root').innerHTML = ""
+	window.scrollTo(0,0);
     if (route.constructor) route.constructor.func(route.constructor.props)
 };
 
