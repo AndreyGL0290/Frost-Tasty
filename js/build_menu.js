@@ -165,6 +165,7 @@ function createProductManagementMenu(product){
 }
 
 export function createBasketMenu(products){
+    console.log(tg.MainButton)
     if (!tg.BackButton.isVisible) tg.BackButton.show()
 
     let basketContainer = document.createElement('div')
