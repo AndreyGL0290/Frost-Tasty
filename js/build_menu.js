@@ -112,13 +112,18 @@ export function createProductCards(){
 }
 
 export function createBasketButton(){
+    let basketButtonContainer = document.createElement('div')
+    basketButtonContainer.className = 'basket-button-container'
+
     let basketButton = document.createElement('a')
     basketButton.className = 'basket-button'
     basketButton.textContent = "Continue"
     // Add prefix /Frost-Tasty_html_pages in production
     basketButton.href = "/Frost-Tasty_html_pages/basket"
 
-    return basketButton
+    basketButtonContainer.appendChild(basketButton)
+
+    return basketButtonContainer
 }
 
 function createProductManagementMenu(product){
