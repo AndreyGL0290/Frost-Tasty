@@ -55,7 +55,6 @@ export function createProductCards(){
     let innerContainer = document.createElement('div')
     innerContainer.className = 'inner-container'
 
-    // i starts with 2 because first 2 params in menu are name and image url
     for (let i = 0; i < Object.keys(products).length; i+=1){
         if (!(typeof products[Object.keys(products)[i]] == 'object')) continue
 
@@ -70,7 +69,7 @@ export function createProductCards(){
         image.className = 'card-image'
         image.src = products[Object.keys(products)[i]].imagePath
 
-        let productPrice = createElement('span')
+        let productPrice = document.createElement('span')
         productPrice.className = 'product-price'
         if (products[Object.keys(products)[i]].postfix) productPrice.textContent = products[Object.keys(products)[i]].price + ' ₾'
         else productPrice.textContent = products[Object.keys(products)[i]].price + ' кг/₾'
