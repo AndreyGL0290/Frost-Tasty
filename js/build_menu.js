@@ -70,7 +70,7 @@ export function createProductCards(){
         image.src = products[Object.keys(products)[i]].imagePath
 
         let productPrice = document.createElement('span')
-        productPrice.className = 'product-price'
+        productPrice.className = 'card-price'
         if (products[Object.keys(products)[i]].postfix) productPrice.textContent = products[Object.keys(products)[i]].price + ' ₾'
         else productPrice.textContent = products[Object.keys(products)[i]].price + ' кг/₾'
 
