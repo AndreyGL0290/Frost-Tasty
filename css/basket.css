@@ -48,6 +48,7 @@
 
 .delete-button{
     display: block;
+    cursor: pointer;
     width: 32px;
     height: 32px;
     background-repeat: no-repeat;
