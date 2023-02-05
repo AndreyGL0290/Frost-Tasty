@@ -253,7 +253,7 @@ export function createBasketMenu(products){
         // Product price label
         let productPrice = document.createElement('span')
         productPrice.className = 'product-price'
-        productPrice.textContent = products[Object.keys(products)[i]].price
+        productPrice.textContent = products[Object.keys(products)[i]].price * products[Object.keys(products)[i]].quantity.get()
 
         // Combine simple elements on divs
         imagesContainer.appendChild(deleteButton)
