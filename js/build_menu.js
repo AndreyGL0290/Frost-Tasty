@@ -243,7 +243,7 @@ export function createBasketMenu(products){
         productQuantity.className = 'product-quantity'
 
         if (products[Object.keys(products)[i]].postfix) productQuantity.textContent = products[Object.keys(products)[i]].quantity.get() + 'шт'
-        else productQuantity.textContent = products[Object.keys(products)[i]].quantity.get() + 'кг'
+        else productQuantity.textContent = products[Object.keys(products)[i]].quantity.get() + ' кг'
 
         // Product price label
         let productPrice = document.createElement('span')
