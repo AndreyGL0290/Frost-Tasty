@@ -218,8 +218,7 @@ export function createBasketMenu(products){
                     document.getElementById('root').appendChild(afterLabelContainer)
                 }
             }
-
-            document.getElementById(deleteButton.data).remove()
+            else document.getElementById(deleteButton.data).remove()
         })
 
         // Containers
