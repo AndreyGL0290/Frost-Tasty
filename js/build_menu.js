@@ -70,6 +70,11 @@ export function createProductCards(){
         image.className = 'card-image'
         image.src = products[Object.keys(products)[i]].imagePath
 
+        let productPrice = createElement('span')
+        productPrice.className = 'product-price'
+        if (products[Object.keys(products)[i]].postfix) productPrice.textContent = products[Object.keys(products)[i]].price + ' ₾'
+        else productPrice.textContent = products[Object.keys(products)[i]].price + ' кг/₾'
+
         let button = document.createElement('a')
 
         button.className = 'card-button products'
@@ -100,6 +105,7 @@ export function createProductCards(){
 
         cardContainer.appendChild(label)
         cardContainer.appendChild(image)
+        cardContainer.appendChild(productPrice)
         cardContainer.appendChild(button)
         cardContainer.appendChild(menuContainer)
 
