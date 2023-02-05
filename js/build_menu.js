@@ -183,25 +183,28 @@ export function createBasketMenu(products){
             if (Object.keys(basket.products).length == 0){
                 document.getElementsByClassName('basket-container')[0].remove()
 
-                let basketIsEmptyLabel = document.createElement('span')
-                basketIsEmptyLabel.innerHTML = 'Ваша корзина пуста<br>Посмтрите что-нибудь еще<br><br>'
-                // For development
-                if (document.getElementsByClassName('confirm-button')[0]) document.getElementsByClassName('confirm-button')[0].remove()
-                //
+                let afterLabelContainer = document.createElement('div')
+                afterLabelContainer.className = 'after-label-container'
 
-                // For production
-                tg.MainButton.hide()
-                //
-
+                let afterLabel = document.createElement('span')
+                afterLabel.innerHTML = 'Ваша корзина пуста<br>Посмтрите что-нибудь еще<br><br>'
+                
                 let getMoreButton = document.createElement('a')
                 getMoreButton.className = 'get-more-button'
                 getMoreButton.innerHTML = 'Посмотреть<br><br>'
                 // Add prefix /Frost-Tasty_html_pages in production
                 getMoreButton.href = '/Frost-Tasty_html_pages/'
 
+                afterLabelContainer.appendChild(afterLabel)
+                afterLabelContainer.appendChild(getMoreButton)
+
+                // For production
+                tg.MainButton.hide()
+                //
+
+
                 if (document.getElementById('root')) {
-                    document.getElementById('root').appendChild(basketIsEmptyLabel)
-                    document.getElementById('root').appendChild(getMoreButton)
+                    document.getElementById('root').appendChild(afterLabelContainer)
                 }
             }
 
@@ -263,14 +266,7 @@ export function createBasketMenu(products){
 
     if (document.getElementById('root')) document.getElementById('root').appendChild(basketContainer)
 
-    // Development
-    // let confirmButton = document.createElement('a')
-    // confirmButton.className = 'confirm-button'
-    // confirmButton.textContent = 'Далее'
-    // if (document.getElementById('root')) document.getElementById('root').appendChild(confirmButton)
-    //
-
-    // Prod
+    // For production
     tg.MainButton.show()
     tg.MainButton.setText('Далее')
 }
