@@ -71,8 +71,8 @@ export function createProductCards(){
 
         let productPrice = document.createElement('span')
         productPrice.className = 'card-price'
-        if (products[Object.keys(products)[i]].postfix) productPrice.textContent = products[Object.keys(products)[i]].price + ' ₾'
-        else productPrice.textContent = products[Object.keys(products)[i]].price + ' кг/₾'
+        if (products[Object.keys(products)[i]].postfix) productPrice.textContent = products[Object.keys(products)[i]].price + products[Object.keys(products)[i]].postfix
+        else productPrice.textContent = products[Object.keys(products)[i]].price + ' ₾/кг'
 
         let button = document.createElement('a')
 
@@ -186,17 +186,17 @@ export function createBasketMenu(products){
         let deleteButton = document.createElement('a')
         deleteButton.className = 'delete-button'
         deleteButton.data = i
-
+        
         // Deletes an element from basket and from user page when clicked
         deleteButton.addEventListener('click', () => {
             basket.deleteProduct(document.getElementById(deleteButton.data).children[0].children[1].textContent)
-            console.log(Object.keys(basket.products).length == 0)
+            document.getElementById(deleteButton.data).remove()
             if (Object.keys(basket.products).length == 0){
                 document.getElementsByClassName('basket-container')[0].remove()
-
+                
                 let afterLabelContainer = document.createElement('div')
                 afterLabelContainer.className = 'after-label-container'
-
+                
                 let afterLabel = document.createElement('span')
                 afterLabel.innerHTML = 'Ваша корзина пуста<br>Посмтрите что-нибудь еще<br><br>'
                 
@@ -205,20 +205,19 @@ export function createBasketMenu(products){
                 getMoreButton.innerHTML = 'Посмотреть<br><br>'
                 // Add prefix /Frost-Tasty_html_pages in production
                 getMoreButton.href = '/Frost-Tasty_html_pages/'
-
+                
                 afterLabelContainer.appendChild(afterLabel)
                 afterLabelContainer.appendChild(getMoreButton)
-
+                
                 // For production
                 tg.MainButton.hide()
                 //
-
-
+                
+                
                 if (document.getElementById('root')) {
                     document.getElementById('root').appendChild(afterLabelContainer)
                 }
             }
-            else document.getElementById(deleteButton.data).remove()
         })
 
         // Containers
@@ -246,13 +245,13 @@ export function createBasketMenu(products){
         let productQuantity = document.createElement('span')
         productQuantity.className = 'product-quantity'
 
-        if (products[Object.keys(products)[i]].postfix) productQuantity.textContent = products[Object.keys(products)[i]].quantity.get() + 'шт'
+        if (products[Object.keys(products)[i]].postfix) productQuantity.textContent = products[Object.keys(products)[i]].quantity.get() + ' шт'
         else productQuantity.textContent = products[Object.keys(products)[i]].quantity.get() + ' кг'
 
         // Product price label
         let productPrice = document.createElement('span')
         productPrice.className = 'product-price'
-        productPrice.textContent = products[Object.keys(products)[i]].price * products[Object.keys(products)[i]].quantity.get()
+        productPrice.textContent = products[Object.keys(products)[i]].price * products[Object.keys(products)[i]].quantity.get() + ' ₾'
 
         // Combine simple elements on divs
         imagesContainer.appendChild(deleteButton)
