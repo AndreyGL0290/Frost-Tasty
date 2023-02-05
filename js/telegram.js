@@ -7,7 +7,7 @@ tg.expand();
 
 tg.MainButton.color = '#FFBF00'
 tg.MainButton.textColor = '#000000'
-Telegram.WevApp.onEvent('mainButtonClicked', () => {
+Telegram.WebApp.onEvent('mainButtonClicked', () => {
     let data = {}
 
     // Shortens basket product data so only valuable information is send
