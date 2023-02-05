@@ -87,6 +87,10 @@ body::-webkit-scrollbar{
     text-decoration: none;
 }
 
+.product-price{
+    margin-top: 10px;
+}
+
 .back-button{
     display: block;
     width: 32px;
