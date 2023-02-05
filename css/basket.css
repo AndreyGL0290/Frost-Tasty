@@ -55,7 +55,7 @@
     background-image: url('../images/system/cross.png');
 }
 
-.basket-button, .confirm-button{
+.basket-button{
     display: flex;
     justify-content: center;
 
@@ -64,7 +64,7 @@
 
     margin-top: 10%;
     padding: 10% 50%;
-
+    height: 3.5rem;
     position: sticky;
     bottom: 0;
 
