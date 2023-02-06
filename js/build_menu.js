@@ -123,7 +123,7 @@ export function createBasketButton(){
     let basketButton = document.createElement('a')
     basketButton.className = 'basket-button'
     basketButton.textContent = "Continue"
-    basketButton.href = urlPath + "/basket"
+    basketButton.href = "/basket"
 
     basketButtonContainer.appendChild(basketButton)
 
