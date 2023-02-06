@@ -1,0 +1,1 @@
+export let urlPath = 'Frost-Tasty_html_pages'

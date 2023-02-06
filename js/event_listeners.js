@@ -1,6 +1,6 @@
 import {basket} from './basket.js'
 import {urlRoute, routes} from './urlRoute.js'
-import {urlPath} from './development.js';
+import {urlPath} from './urlPath.js';
 import {createBasketButton} from './build_menu.js'
 
 // Used in urlRoute.js

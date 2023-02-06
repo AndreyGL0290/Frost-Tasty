@@ -1,7 +1,7 @@
 import {basket} from './basket.js'
 import {tg} from './telegram.js'
 import {menu} from './menu.js'
-import {urlPath} from './development.js'
+import {urlPath} from './urlPath.js'
 
 // TODO:
 // 1) Center basket content
