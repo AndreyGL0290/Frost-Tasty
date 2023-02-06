@@ -1,10 +1,18 @@
 import { createBasketMenu, createGroupCards, createProductCards } from "./build_menu.js";
-import { urlPath } from "./urlPath.js";
 import {menu} from './menu.js'
 
 const pageTitle = "Frost&Tasty";
 
 export let routes = {
+	'': {
+		title: "Groups | " + pageTitle,
+		description: "This is the home page",
+		constructor: {
+			func: createGroupCards,
+			props: menu
+		}
+	},
+
 	"products": {
 		title: "Products | " + pageTitle,
 		description: "This is the about page",
@@ -22,15 +30,6 @@ export let routes = {
         }
 	}
 };
-
-routes[urlPath] = {
-	title: "Groups | " + pageTitle,
-	description: "This is the home page",
-	constructor: {
-		func: createGroupCards,
-		props: menu
-	}
-}
 
 export const urlRoute = (event) => {
 	event = event || window.event; // get window.event if event argument not provided
