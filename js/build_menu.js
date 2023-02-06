@@ -30,7 +30,7 @@ export function createGroupCards(menu){
 
         let button = document.createElement('a')
 
-        button.href = window.location.pathname + 'products#' + Object.keys(menu)[i]
+        button.href = window.location.origin + urlPath + '/products#' + Object.keys(menu)[i]
         button.className = 'card-button groups'
         button.textContent = 'Перейти'
 
@@ -123,7 +123,7 @@ export function createBasketButton(){
     let basketButton = document.createElement('a')
     basketButton.className = 'basket-button'
     basketButton.textContent = "Continue"
-    basketButton.href = urlPath + "/basket"
+    basketButton.href = window.location.origin + urlPath + "/basket"
 
     basketButtonContainer.appendChild(basketButton)
 
@@ -202,7 +202,7 @@ export function createBasketMenu(products){
                 let getMoreButton = document.createElement('a')
                 getMoreButton.className = 'get-more-button'
                 getMoreButton.innerHTML = 'Посмотреть<br><br>'
-                getMoreButton.href = window.location.pathname
+                getMoreButton.href = window.location.origin + urlPath + '/'
                 
                 afterLabelContainer.appendChild(afterLabel)
                 afterLabelContainer.appendChild(getMoreButton)
@@ -231,7 +231,7 @@ export function createBasketMenu(products){
         // Eye button
         let showProductButton = document.createElement('a')
         showProductButton.className = 'show-product-button'
-        showProductButton.href = window.location.pathname + 'products#' + products[Object.keys(products)[i]].parent
+        showProductButton.href = window.location.origin + urlPath + '/products#' + products[Object.keys(products)[i]].parent
 
         // Product name label
         let productLabel = document.createElement('span')
