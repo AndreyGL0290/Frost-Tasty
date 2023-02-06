@@ -3,9 +3,8 @@ import {menu} from './menu.js'
 
 const pageTitle = "Frost&Tasty";
 
-// Add prefix /Frost-Tasty_html_pages in production
 export let routes = {
-	'/Frost-Tasty_html_pages/': {
+	'': {
 		title: "Groups | " + pageTitle,
 		description: "This is the home page",
         constructor: {
@@ -13,7 +12,7 @@ export let routes = {
             props: menu
         }
 	},
-	"/Frost-Tasty_html_pages/products": {
+	"products": {
 		title: "Products | " + pageTitle,
 		description: "This is the about page",
         constructor: {
@@ -21,7 +20,7 @@ export let routes = {
             props: null
         }
 	},
-	'/Frost-Tasty_html_pages/basket': {
+	'basket': {
 		title: "Basket | " + pageTitle,
 		description: "Here you can check products you've chosen",
         constructor: {
@@ -44,7 +43,8 @@ export const urlRoute = (event) => {
 // create a function that handles the  location
 const locationHandler = async () => {
 	const location = window.location.pathname;
-	const route = routes[location];
+	console.log(location.split('/')[location.split('/').length-1])
+	const route = routes[location.split('/')[location.split('/').length-1]];
 	document.title = route.title;
 	document
 		.querySelector('meta[name="description"]')

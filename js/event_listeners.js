@@ -1,5 +1,6 @@
 import {basket} from './basket.js'
 import {urlRoute, routes} from './urlRoute.js'
+import {urlPath} from './development.js';
 import {createBasketButton} from './build_menu.js'
 
 // Used in urlRoute.js
@@ -29,8 +30,8 @@ document.addEventListener('click', (e) => {
         // For development {
         if (!document.getElementsByClassName('basket-button')[0]){
             let basketButton = createBasketButton()
-            // Add prefix /Frost-Tasty_html_pages in production
-            routes['/Frost-Tasty_html_pages/basket'].constructor.props = basket.products
+
+            routes[urlPath + 'basket'].constructor.props = basket.products
 
             document.getElementsByClassName('middle-container')[0].appendChild(basketButton)
         }

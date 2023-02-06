@@ -1,6 +1,7 @@
 import {basket} from './basket.js'
 import {tg} from './telegram.js'
-import { menu } from './menu.js'
+import {menu} from './menu.js'
+import {urlPath} from './development.js'
 
 // TODO:
 // 1) Center basket content
@@ -29,8 +30,7 @@ export function createGroupCards(menu){
 
         let button = document.createElement('a')
 
-        // Add prefix /Frost-Tasty_html_pages in production
-        button.href = '/Frost-Tasty_html_pages/products#' + Object.keys(menu)[i]
+        button.href = urlPath + '/products#' + Object.keys(menu)[i]
         button.className = 'card-button groups'
         button.textContent = 'Перейти'
 
@@ -123,8 +123,7 @@ export function createBasketButton(){
     let basketButton = document.createElement('a')
     basketButton.className = 'basket-button'
     basketButton.textContent = "Continue"
-    // Add prefix /Frost-Tasty_html_pages in production
-    basketButton.href = "/Frost-Tasty_html_pages/basket"
+    basketButton.href = urlPath + "/basket"
 
     basketButtonContainer.appendChild(basketButton)
 
@@ -203,8 +202,7 @@ export function createBasketMenu(products){
                 let getMoreButton = document.createElement('a')
                 getMoreButton.className = 'get-more-button'
                 getMoreButton.innerHTML = 'Посмотреть<br><br>'
-                // Add prefix /Frost-Tasty_html_pages in production
-                getMoreButton.href = '/Frost-Tasty_html_pages/'
+                getMoreButton.href = urlPath + '/'
                 
                 afterLabelContainer.appendChild(afterLabel)
                 afterLabelContainer.appendChild(getMoreButton)
