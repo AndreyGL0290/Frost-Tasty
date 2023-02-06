@@ -14,8 +14,6 @@ Telegram.WebApp.onEvent('mainButtonClicked', () => {
     for (let i = 0; i < Object.keys(basket.products).length; i += 1){
         data[Object.keys(basket.products)[i]] = {'price': basket.products[Object.keys(basket.products)[i]].price, 'quantity': basket.products[Object.keys(basket.products)[i]].quantity.get()}
     }
-    
-    console.log(data)
 
     tg.sendData(JSON.stringify(data))
 });

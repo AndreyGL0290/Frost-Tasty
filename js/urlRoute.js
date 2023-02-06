@@ -44,7 +44,6 @@ export const urlRoute = (event) => {
 // create a function that handles the  location
 const locationHandler = async () => {
 	const location = window.location.pathname;
-	console.log(location.split('/')[location.split('/').length-1])
 	const route = routes[location.split('/')[location.split('/').length-1]];
 	document.title = route.title;
 	document
