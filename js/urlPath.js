@@ -1,1 +1,1 @@
-export let urlPath = 'Frost-Tasty'
+export let urlPath = '/Frost-Tasty'
