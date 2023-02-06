@@ -31,7 +31,7 @@ document.addEventListener('click', (e) => {
         if (!document.getElementsByClassName('basket-button')[0]){
             let basketButton = createBasketButton()
 
-            routes[urlPath + 'basket'].constructor.props = basket.products
+            routes['basket'].constructor.props = basket.products
 
             document.getElementsByClassName('middle-container')[0].appendChild(basketButton)
         }
